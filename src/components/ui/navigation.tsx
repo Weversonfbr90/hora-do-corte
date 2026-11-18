@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, type KeyboardEvent, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Icon, type IconName } from "./icon";
@@ -57,7 +58,10 @@ export interface NavItem {
 interface BottomNavProps {
   items: NavItem[];
   current: string;
-  onNavigate: (id: string) => void;
+  /** Sem onNavigate, os itens viram links normais (href). Com onNavigate (demonstração), o clique é interceptado. */
+  onNavigate?: (id: string) => void;
+  /** Conteúdo extra no rodapé do menu lateral (ex.: nome do usuário). */
+  footer?: ReactNode;
   /** Use "static" na demonstração; "fixed" no app. */
   position?: "fixed" | "static";
 }
@@ -77,10 +81,10 @@ export function BottomNav({ items, current, onNavigate, position = "fixed" }: Bo
           const active = item.id === current;
           return (
             <li key={item.id} className="flex-1">
-              <a
+              <Link
                 href={item.href ?? `#${item.id}`}
                 aria-current={active ? "page" : undefined}
-                onClick={(e) => { e.preventDefault(); onNavigate(item.id); }}
+                onClick={onNavigate ? (e) => { e.preventDefault(); onNavigate(item.id); } : undefined}
                 className={cn(
                   "group flex min-h-16 flex-col items-center justify-center gap-1 text-helper transition-colors focus-visible:focus-ring focus-visible:-outline-offset-4",
                   active ? "font-bold text-fg" : "font-medium text-fg-muted hover:text-fg",
@@ -90,7 +94,7 @@ export function BottomNav({ items, current, onNavigate, position = "fixed" }: Bo
                   <Icon name={item.icon} size={24} />
                 </span>
                 {item.label}
-              </a>
+              </Link>
             </li>
           );
         })}
@@ -103,19 +107,19 @@ export function BottomNav({ items, current, onNavigate, position = "fixed" }: Bo
 /* SideNav — navegação no tablet/desktop (painel do dono)               */
 /* ------------------------------------------------------------------ */
 
-export function SideNav({ items, current, onNavigate }: Omit<BottomNavProps, "position">) {
+export function SideNav({ items, current, onNavigate, footer }: Omit<BottomNavProps, "position">) {
   return (
     <nav aria-label="Principal" className="flex h-full w-64 flex-col gap-6 bg-surface-inverse p-4 text-fg-inverse">
       <Wordmark inverse className="px-3 pt-2" />
-      <ul className="flex flex-col gap-1">
+      <ul className="flex flex-1 flex-col gap-1">
         {items.map((item) => {
           const active = item.id === current;
           return (
             <li key={item.id}>
-              <a
+              <Link
                 href={item.href ?? `#${item.id}`}
                 aria-current={active ? "page" : undefined}
-                onClick={(e) => { e.preventDefault(); onNavigate(item.id); }}
+                onClick={onNavigate ? (e) => { e.preventDefault(); onNavigate(item.id); } : undefined}
                 className={cn(
                   "flex min-h-touch items-center gap-3 rounded-md px-3 text-body transition-colors",
                   "focus-visible:outline-3 focus-visible:outline-accent focus-visible:outline-offset-2",
@@ -124,11 +128,12 @@ export function SideNav({ items, current, onNavigate }: Omit<BottomNavProps, "po
               >
                 <Icon name={item.icon} size={24} />
                 {item.label}
-              </a>
+              </Link>
             </li>
           );
         })}
       </ul>
+      {footer}
     </nav>
   );
 }

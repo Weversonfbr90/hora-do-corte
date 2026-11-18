@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import { getSession, homePath } from "@/server/session";
 
-// Enquanto o app não existe, a raiz leva para a demonstração do Design System.
-export default function Home() {
-  redirect("/design-system");
+/** Raiz: leva cada pessoa para a tela do seu perfil (ou para Entrar). */
+export default async function Home() {
+  const session = await getSession();
+  redirect(session ? homePath(session) : "/entrar");
 }
