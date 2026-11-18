@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Hora do corte — Tokens do Design System
+   Documentação completa em design-system.md
+   Contraste verificado com: npm run contrast
+   ========================================================================== */
+
+@theme {
+  /* Remove a paleta padrão do Tailwind: só os tokens da marca ficam disponíveis. */
+  --color-*: initial;
+
+  /* ---------- Paleta base (escalas) ---------- */
+  --color-carvao-950: #1c1917;
+  --color-carvao-900: #292524; /* cor principal do briefing */
+  --color-carvao-800: #3a3532;
+  --color-carvao-600: #635b54;
+  --color-carvao-500: #8c8178;
+  --color-carvao-400: #a39a91;
+
+  --color-creme-0: #fffdf9;
+  --color-creme-50: #faf7f2; /* fundo do briefing */
+  --color-creme-100: #f2ece3;
+  --color-creme-200: #e2d8c9;
+
+  --color-couro-700: #7a4a2b;
+  --color-couro-500: #a5714a;
+  --color-couro-100: #f3e5d6;
+  --color-madeira-800: #5b3f2c;
+
+  --color-celeste-300: #add2ff; /* destaque do briefing */
+  --color-celeste-100: #eaf3ff;
+  --color-celeste-700: #1e5a9c; /* ajuste acessível do destaque */
+
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* ---------- Tokens semânticos (use estes nos componentes) ---------- */
+  --color-bg: var(--color-creme-50);
+  --color-surface: var(--color-creme-0);
+  --color-surface-alt: var(--color-creme-100);
+  --color-surface-inverse: var(--color-carvao-900);
+
+  --color-fg: var(--color-carvao-900);
+  --color-fg-muted: var(--color-carvao-600);
+  --color-fg-disabled: var(--color-carvao-400);
+  --color-fg-inverse: var(--color-creme-50);
+
+  --color-primary: var(--color-carvao-900);
+  --color-primary-hover: var(--color-carvao-800);
+  --color-primary-active: var(--color-carvao-950);
+  --color-on-primary: var(--color-creme-50);
+
+  --color-accent: var(--color-celeste-300);
+  --color-accent-hover: #93c4ff;
+  --color-accent-active: #7fb8ff;
+  --color-accent-soft: var(--color-celeste-100);
+  --color-accent-strong: var(--color-celeste-700);
+  --color-on-accent: var(--color-carvao-900);
+
+  --color-brand-leather: var(--color-couro-700);
+  --color-brand-leather-soft: var(--color-couro-100);
+  --color-brand-wood: var(--color-madeira-800);
+
+  --color-border: var(--color-creme-200);
+  --color-border-strong: var(--color-carvao-500);
+  --color-focus: var(--color-celeste-700);
+
+  --color-success: #2c6b3f;
+  --color-success-soft: #e5f1e7;
+  --color-warning: #7d5300;
+  --color-warning-soft: #fbf0d6;
+  --color-danger: #a8261b;
+  --color-danger-soft: #fcebe8;
+  --color-info: var(--color-celeste-700);
+  --color-info-soft: var(--color-celeste-100);
+
+  /* ---------- Tipografia ---------- */
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-display: 2rem; /* 32px */
+  --text-display--line-height: 2.5rem;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+
+  --text-h1: 1.75rem; /* 28px */
+  --text-h1--line-height: 2.25rem;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h1--font-weight: 700;
+
+  --text-h2: 1.375rem; /* 22px */
+  --text-h2--line-height: 1.875rem;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 700;
+
+  --text-h3: 1.125rem; /* 18px */
+  --text-h3--line-height: 1.625rem;
+  --text-h3--font-weight: 600;
+
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body-lg--line-height: 1.75rem;
+
+  --text-body: 1rem; /* 16px — mínimo em campos para evitar zoom no iOS */
+  --text-body--line-height: 1.5rem;
+
+  --text-label: 0.9375rem; /* 15px */
+  --text-label--line-height: 1.375rem;
+  --text-label--font-weight: 600;
+
+  --text-helper: 0.875rem; /* 14px — menor tamanho permitido */
+  --text-helper--line-height: 1.25rem;
+
+  --text-overline: 0.75rem; /* 12px — apenas rótulos em caixa alta, nunca frases */
+  --text-overline--line-height: 1rem;
+  --text-overline--letter-spacing: 0.08em;
+  --text-overline--font-weight: 700;
+
+  /* ---------- Espaçamento ----------
+     Base de 4px (Tailwind: 1 unidade = 0.25rem). Use apenas os passos
+     documentados: 1, 2, 3, 4, 5, 6, 8, 10, 12, 16. */
+  --spacing: 0.25rem;
+  --spacing-touch: 3rem; /* 48px — alvo de toque mínimo */
+  --spacing-touch-lg: 3.5rem; /* 56px — ação principal da tela */
+
+  /* ---------- Raios (cantos suaves) ---------- */
+  --radius-sm: 0.375rem; /* 6px  — badges, chips pequenos */
+  --radius-md: 0.625rem; /* 10px — campos, horários */
+  --radius-lg: 0.875rem; /* 14px — botões, cartões */
+  --radius-xl: 1.25rem; /* 20px — modais, folhas inferiores */
+  --radius-full: 9999px; /* avatares, pílulas */
+
+  /* ---------- Sombras (tom quente, nunca preto puro) ---------- */
+  --shadow-sm: 0 1px 2px rgb(41 37 36 / 0.06), 0 1px 1px rgb(41 37 36 / 0.04);
+  --shadow-md: 0 4px 12px -2px rgb(41 37 36 / 0.08), 0 2px 4px -2px rgb(41 37 36 / 0.06);
+  --shadow-lg: 0 16px 40px -8px rgb(41 37 36 / 0.18), 0 6px 12px -6px rgb(41 37 36 / 0.1);
+
+  /* ---------- Movimento ---------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+
+  @keyframes sheet-in {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+}
+
+/* ---------- Bordas ----------
+   Espessuras: border (1px) para separar, border-2 (2px) para estado
+   selecionado/foco. Cores: border-border (decorativa) e
+   border-border-strong (contorno de campos, contraste ≥ 3:1). */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Foco visível padrão: anel azul escuro com folga clara (≥ 3:1 em qualquer fundo do app). */
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility focus-ring {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
